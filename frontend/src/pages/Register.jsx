@@ -1,21 +1,29 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import api from "../services/api";
 
 function Register() {
   const navigate = useNavigate();
 
-  const [name, setName] = useState("");
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
 
-    if (name && email && password) {
+    try {
+      await api.post("register/", {
+        username,
+        email,
+        password,
+      });
+
       alert("Registration Successful");
       navigate("/login");
-    } else {
-      alert("Please fill all fields");
+    } catch (err) {
+      console.log(err.response?.data);
+      alert(JSON.stringify(err.response?.data));
     }
   };
 
@@ -26,9 +34,9 @@ function Register() {
       <form onSubmit={handleRegister}>
         <input
           type="text"
-          placeholder="Enter Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+          placeholder="Enter Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
         />
         <br /><br />
 
