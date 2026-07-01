@@ -17,6 +17,21 @@ function JobDetails() {
       });
   }, [id]);
 
+  
+  const handleApply = async () => {
+    try {
+      await api.post("applications/", {
+        user: 1,
+        job: job.id,
+      });
+
+      alert("Application Submitted Successfully!");
+    } catch (err) {
+      console.log(err);
+      alert("Application Failed!");
+    }
+  };
+
   if (!job) {
     return <h2 style={{ textAlign: "center" }}>Loading...</h2>;
   }
@@ -45,7 +60,7 @@ function JobDetails() {
       <p><b>Description:</b> {job.description}</p>
 
       <button
-        onClick={() => alert("Application Submitted Successfully!")}
+        onClick={handleApply}
         style={{
           padding: "10px 20px",
           backgroundColor: "#2563eb",
