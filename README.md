@@ -83,7 +83,7 @@ JobBoardPlatform/
 ### Clone Repository
 
 ```bash
-git clone https://github.com/hema-9059/JobBoardPlatform.git
+git clone https://github.com/hema-9059/Job-board-platform.git
 ```
 
 ### Backend Setup
@@ -111,7 +111,7 @@ cd frontend
 
 npm install
 
-npm start
+npm run dev
 ```
 ## Screenshots
 
